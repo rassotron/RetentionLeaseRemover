@@ -5,6 +5,7 @@ const headers = {
 }
 
 const getAllBuilds = async () => {
+    console.log("id " + process.env.BUILD_DEFINITION_ID)
     const params = { 
         "definitions": process.env.BUILD_DEFINITION_ID, 
         "statusFilter": "completed", 
@@ -15,7 +16,9 @@ const getAllBuilds = async () => {
         const res = await axios.get(
             `${process.env.BASE_API_URL}/build/builds`, { headers, params }
         );
+        console.log(res )
         return res.data.value;
+        
     } catch (e) {
         console.log(e.message)
     }
